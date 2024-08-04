@@ -1,0 +1,32 @@
+.carousel,
+.carousel-item {
+  height: 300px; /* Set a fixed height for the carousel */
+}
+
+.carousel-inner img {
+  height: 100%;
+  object-fit: cover; /* Ensure images cover the area without changing the aspect ratio */
+}
+
+.card-height {
+  height: 300px; /* Set the same fixed height for the card */
+}
+
+@media (min-width: 768px) {
+  .col-md-9 {
+    flex: 0 0 auto;
+    width: 75%; /* 3/4 of the row width */
+  }
+
+  .col-md-3 {
+    flex: 0 0 auto;
+    width: 25%; /* 1/4 of the row width */
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(236, 222, 172);
+}

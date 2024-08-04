@@ -1,0 +1,23 @@
+.comment-container{
+    margin: 2rem;
+}
+.comment {
+    background-color: #f9f9f9;
+  }
+  
+  .replies {
+    margin-left: 20px;
+  }
+  
+  .reply {
+    background-color: #f1f1f1;
+  }
+  
+  .comment-header, .reply-header {
+    font-size: 0.9em;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  

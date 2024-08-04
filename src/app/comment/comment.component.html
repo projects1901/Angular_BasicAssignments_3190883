@@ -1,0 +1,39 @@
+<div class="comment-container" *ngIf="isUserLogged">
+<div class="comment-section mt-4">
+  <h4>Comments</h4>
+
+  <!-- Display comments -->
+  <div *ngFor="let comment of comments" class="comment mb-3 p-3 border rounded">
+    <div class="comment-header d-flex justify-content-between">
+      <strong>{{ comment.username }}</strong>
+      <small>{{ comment.createdAt | date:'short' }}</small>
+    </div>
+    <p>{{ comment.text }}</p>
+
+    <!-- Display replies -->
+    <div *ngIf="comment.replies?.length" class="replies ml-4">
+      <div *ngFor="let reply of comment.replies" class="reply mb-2 p-2 border rounded">
+        <div class="reply-header d-flex justify-content-between">
+          <strong>{{ reply.username }}</strong>
+          <small>{{ reply.createdAt | date:'short' }}</small>
+        </div>
+        <p>{{ reply.text }}</p>
+      </div>
+    </div>
+
+    <!-- Reply form -->
+    <div *ngIf="replyCommentId === comment.id" class="reply-form mt-2">
+      <textarea [(ngModel)]="replyText" class="form-control mb-2" placeholder="Write a reply..."></textarea>
+      <button class="btn btn-primary btn-sm" (click)="addReply(comment.id)">Reply</button>
+      <button class="btn btn-secondary btn-sm ml-2" (click)="replyCommentId = null">Cancel</button>
+    </div>
+    <button class="btn btn-link btn-sm" (click)="replyCommentId = comment.id">Reply</button>
+  </div>
+
+  <!-- New comment form -->
+  <div class="new-comment-form mt-4">
+    <textarea [(ngModel)]="newComment" class="form-control mb-2" placeholder="Write a comment..."></textarea>
+    <button class="btn btn-primary" (click)="addComment()">Add Comment</button>
+  </div>
+</div>
+</div>

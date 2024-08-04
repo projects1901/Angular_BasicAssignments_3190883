@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <div class="row">
+      <!-- Carousel -->
+      <div class="col-md-9 d-flex align-items-center">
+        <div id="apartmentCarousel" class="carousel slide w-100" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div *ngFor="let apartment of featuredlistings; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+              <img [src]="apartment.photosPath" class="d-block w-100 carousel-img" alt="{{ apartment.apartmentType }}">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#apartmentCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+  
+      <!-- Card -->
+      <div class="col-md-3 d-flex align-items-center">
+        <div class="card text-center w-100 card-height">
+          <div class="card-body d-flex flex-column justify-content-center">
+            <h5 class="card-title">Featured Listings</h5>
+            <p class="card-text">{{ featuredlistings[currentSlideIndex].description }}</p>
+            <div class="mt-auto">
+              <button class="btn btn-primary me-2" (click)="viewDetails(featuredlistings[currentSlideIndex])">View Details</button>
+              <!-- <button class="btn btn-secondary" (click)="markAsFavourite(featuredlistings[currentSlideIndex])">Mark as Favourite</button> -->
+              <button class="btn"
+                            [ngClass]="{'btn-secondary': !isFavorite(featuredlistings[currentSlideIndex].id), 'btn-danger': isFavorite(featuredlistings[currentSlideIndex].id)}"
+                            (click)="markAsFavourite(featuredlistings[currentSlideIndex])">
+                            {{ isFavorite(featuredlistings[currentSlideIndex].id) ? 'Unmark as Favourite' : 'Mark as Favourite' }}
+                        </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-apartment-list></app-apartment-list>

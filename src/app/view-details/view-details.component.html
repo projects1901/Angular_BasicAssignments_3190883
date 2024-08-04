@@ -1,0 +1,17 @@
+<h3>View Details</h3>
+<div class="container mt-5">
+    <div *ngIf="apartment">
+      <h2>{{ apartment.title }}</h2>
+      <img [src]="apartment.photosPath" class="img-fluid mb-4" alt="{{ apartment.title }}">
+      <p><strong>Property Type:</strong> {{ apartment.apartmentType }}</p>
+      <p><strong>Description:</strong> {{ apartment.description }}</p>
+      <p><strong>Location:</strong> {{ apartment.location }}</p>
+      <p><strong>Expected Amount:</strong> {{ apartment.expectedAmount | currency }}</p>
+      <p><strong>Amenities:</strong></p>
+      <ul>
+        <li *ngFor="let amenity of apartment.amenities | keyvalue">{{ amenity.key }}: {{ amenity.value }}</li>
+      </ul>
+      <button class="btn btn-primary" (click)="goBack()">Back to Listings</button>
+    </div>
+  </div>
+  <app-comment [apartmentId]="apartment.id"></app-comment>

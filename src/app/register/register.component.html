@@ -1,0 +1,53 @@
+<div class="register-container">
+    <h2>Register</h2>
+
+    <div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitClick()">
+            <div>Name</div>
+            <input type="text" id="name" formControlName="name">
+
+            <div
+                *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
+                <small *ngIf="registerForm.get('name')?.errors?.['required']">
+                    Name is Required
+                </small>
+                <small *ngIf="registerForm.get('name')?.errors?.['maxlength']">
+                    Maximum 50 characters allowed
+                </small>
+            </div>
+            <div>Email</div>
+            <input type="email" id="email" formControlName="email">
+            <div
+                *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+                <small *ngIf="registerForm.get('email')?.errors?.['required']">
+                    Email is Required
+                </small>
+                <small *ngIf="registerForm.get('email')?.errors?.['email']">
+                    Enter email in proper format
+                </small>
+            </div>
+            <div>
+                <small *ngIf="isUserExists">
+                    Email already exists
+                </small>
+            </div>
+            <div>Password</div>
+            <input type="password" id="password" formControlName="password">
+            <div
+                *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+                <small *ngIf="registerForm.get('password')?.errors?.['required']">
+                    Password is Required
+                </small>
+                <small *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                    Minimum 8 characters allowed
+                </small>
+            </div>
+            <br>
+            <br>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+</div>

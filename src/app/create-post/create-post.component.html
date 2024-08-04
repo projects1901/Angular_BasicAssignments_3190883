@@ -1,0 +1,207 @@
+<div>
+    <h2>Create Post</h2>
+
+    <div class="container mt-5">
+        <form [formGroup]="createPost" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="apartment">Choose your apartment</label>
+                <select class="form-control" id="apartment" formControlName="apartment">
+                    <option value="">Select an option</option>
+                    <option value="duplex">Duplex</option>
+                    <option value="studio">Studio</option>
+                    <option value="penthouse">Penthouse</option>
+                </select>
+                <div
+                    *ngIf="createPost.get('apartment')?.invalid && (createPost.get('apartment')?.dirty || createPost.get('apartment')?.touched)">
+                    <small *ngIf="createPost.get('apartment')?.errors?.['required']">
+                        Apartment type is required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Enter your Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" formControlName="name">
+                <div
+                    *ngIf="createPost.get('name')?.invalid && (createPost.get('name')?.dirty || createPost.get('name')?.touched)">
+                    <small *ngIf="createPost.get('name')?.errors?.['required']">
+                        Name is Required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is this a shared Property</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="sharedYes" value="yes"
+                        formControlName="sharedProperty">
+                    <label class="form-check-label" for="sharedYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="sharedNo" value="no"
+                        formControlName="sharedProperty">
+                    <label class="form-check-label" for="sharedNo">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="location">Property Location</label>
+                <input type="text" class="form-control" id="location" placeholder="Enter street address"
+                    formControlName="location">
+                    <div
+                    *ngIf="createPost.get('location')?.invalid && (createPost.get('location')?.dirty || createPost.get('location')?.touched)">
+                    <small *ngIf="createPost.get('location')?.errors?.['required']">
+                        Location is required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Property Details</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" placeholder="Enter area in square feet"
+                            formControlName="squareFeet">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Stay / Lease type</label>
+                        <div class="form-check form-check">
+                            <input class="form-check-input" type="radio" id="longTerm" value="longTerm"
+                                formControlName="leaseType">
+                            <label class="form-check-label" for="longTerm">Long term</label>
+                        </div>
+                        <div class="form-check form-check">
+                            <input class="form-check-input" type="radio" id="shortTerm" value="shortTerm"
+                                formControlName="leaseType">
+                            <label class="form-check-label" for="shortTerm">Short term</label>
+                        </div>
+                        <div class="form-check form-check">
+                            <input class="form-check-input" type="radio" id="both" value="both"
+                                formControlName="leaseType">
+                            <label class="form-check-label" for="both">Both</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Expected Rent</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" placeholder="Expected Amount in $"
+                            formControlName="expectedAmount">
+                            <div
+                    *ngIf="createPost.get('expectedAmount')?.invalid && (createPost.get('expectedAmount')?.dirty || createPost.get('expectedAmount')?.touched)">
+                    <small *ngIf="createPost.get('expectedAmount')?.errors?.['required']">
+                        Expected rent is Required
+                    </small>
+                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="negotiable"
+                                formControlName="negotiable">
+                            <label class="form-check-label" for="negotiable">Negotiable</label>
+                        </div>
+                        <label>Price mode</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="perMonth" value="perMonth"
+                                formControlName="priceMode">
+                            <label class="form-check-label" for="perMonth">Per month</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="utilitiesIncluded"
+                                value="utilitiesIncluded" formControlName="priceMode">
+                            <label class="form-check-label" for="utilitiesIncluded">Utilities included in rent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Is the room furnished</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="furnishedYes" value="true"
+                        formControlName="furnished">
+                    <label class="form-check-label" for="furnishedYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="furnishedNo" value="false"
+                        formControlName="furnished">
+                    <label class="form-check-label" for="furnishedNo">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Amenities Included</label><br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="swimming" formControlName="swimming">
+                            <label class="form-check-label" for="swimming">Swimming</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="carPark" formControlName="carPark">
+                            <label class="form-check-label" for="carPark">Car Park</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="waterHeater"
+                                formControlName="waterHeater">
+                            <label class="form-check-label" for="waterHeater">Water Heater</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="clubHouse" formControlName="clubHouse">
+                            <label class="form-check-label" for="clubHouse">Club House</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="elevator" formControlName="elevator">
+                            <label class="form-check-label" for="elevator">Elevator</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="powerBackup"
+                                formControlName="powerBackup">
+                            <label class="form-check-label" for="powerBackup">Power Backup</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gym" formControlName="gym">
+                            <label class="form-check-label" for="gym">Gym</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter your AD title"
+                    formControlName="title">
+                    <div
+                    *ngIf="createPost.get('title')?.invalid && (createPost.get('title')?.dirty || createPost.get('title')?.touched)">
+                    <small *ngIf="createPost.get('title')?.errors?.['required']">
+                        title is Required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description"
+                    placeholder="Enter a detailed description within 1400 characters" formControlName="description"
+                    rows="5"></textarea>
+                    <div
+                    *ngIf="createPost.get('description')?.invalid && (createPost.get('description')?.dirty || createPost.get('description')?.touched)">
+                    <small *ngIf="createPost.get('description')?.errors?.['required']">
+                        Description is Required
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="photos">Photos</label>
+                <!-- <input type="file" class="form-control-file" id="photos" formControlName="photos"
+                     multiple>
+                     <div class="input-group mb-3"> -->
+                <input type="file" class="form-control" id="photos" formControlName="photos">
+
+                <!-- </div> -->
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Preview & Submit</button>
+                <!-- <button type="submit" class="btn btn-success ml-2">Submit</button> -->
+            </div>
+        </form>
+    </div>
+</div>
